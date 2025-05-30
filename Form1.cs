@@ -44,7 +44,7 @@ namespace REGISTERATION_FORM
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    string query = "INSERT INTO MYTABLE (Id, Name, Email, Phone, Department) VALUES (@Id, @Name, @Email, @Phone, @Department)";
+                    string query = "INSERT INTO MYTABLE (studentId, studentName, Section, Department, Permission) VALUES (@Id, @Name, @Email, @Phone, @Department)";
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@Id", id);
                     cmd.Parameters.AddWithValue("@Name", txtName.Text);
@@ -137,7 +137,7 @@ namespace REGISTERATION_FORM
             try
             {
                 DataGridViewRow selectedRow = dataGridViewMYTABLE.SelectedRows[0];
-                var idValue = selectedRow.Cells["Id"].Value;
+                var idValue = selectedRow.Cells["studentId"].Value;
 
                 if (idValue == null || !int.TryParse(idValue.ToString(), out int id))
                 {
@@ -152,7 +152,7 @@ namespace REGISTERATION_FORM
                 {
                     using (SqlConnection con = new SqlConnection(connectionString))
                     {
-                        string query = "DELETE FROM MYTABLE WHERE Id=@Id";
+                        string query = "DELETE FROM MYTABLE WHERE studentId=@Id";
                         SqlCommand cmd = new SqlCommand(query, con);
                         cmd.Parameters.AddWithValue("@Id", id);
 
@@ -190,6 +190,9 @@ namespace REGISTERATION_FORM
             }
         }
 
-       
+        private void btnUpdate_Clic(object sender, EventArgs e)
+        {
+
+        }
     }
 }
